@@ -1,0 +1,20 @@
+{
+  "name": "aoc2020d8-handheldhalting",
+  "version": "1.0.0",
+  "description": "Their handheld game console won't turn on!",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js input.txt",
+    "test": "node index.js example.txt"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EmilJohnJohansson/AoC2020D8-HandheldHalting.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/EmilJohnJohansson/AoC2020D8-HandheldHalting/issues"
+  },
+  "homepage": "https://github.com/EmilJohnJohansson/AoC2020D8-HandheldHalting#readme"
+}
