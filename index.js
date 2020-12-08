@@ -1,5 +1,3 @@
-console.log("================================START===============================")
-
 const fs = require('fs');
 
 function parseInput(fileName) {
@@ -37,7 +35,34 @@ function runProgram(input) {
         i = nextPos;
         total += acc;
     }
+
     return [i, total];
+}
+
+function findCorrectProgramTotal(input) {
+    let endPos = 0;
+    let total = 0;
+
+    for (let i = 0; i < input.length; i++) {
+        let copy = JSON.parse(JSON.stringify(input));   //  Deep copy
+        
+        if (copy[i][1] === 'nop') {
+            copy[i][1] = 'jmp';
+        } else if (copy[i][1] === 'jmp') {
+            copy[i][1] = 'nop';
+        } else {
+            continue;
+        }
+        
+        [endPos, total] = runProgram(copy);
+        
+        if (endPos >= input.length) {
+            // console.log([endPos, total]);
+            break;
+        }
+    }
+
+    return [endPos, total];
 }
 
 const fileName = process.argv[2];
@@ -46,23 +71,4 @@ const input = parseInput(fileName);
 
 console.log(runProgram(input));
 
-for (let i = 0; i < input.length; i++) {
-    let copy = JSON.parse(JSON.stringify(input));
-
-    if (copy[i][1] === 'nop') {
-        copy[i][1] = 'jmp'
-    } else if (copy[i][1] === 'jmp') {
-        copy[i][1] = 'nop'
-    } else {
-        continue;
-    }
-
-    const [endPos, total] = runProgram(copy);
-
-    // console.log(endPos);
-
-    if (endPos >= input.length) {
-        console.log([endPos, total]);
-        break;
-    }
-};
+console.log(findCorrectProgramTotal(input));
